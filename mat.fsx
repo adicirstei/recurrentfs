@@ -1,3 +1,5 @@
+#load "utils.fsx"
+
 type Mat = {
   w : float []
   dw : float []
@@ -22,3 +24,9 @@ let get m row col =
 let set m row col v =
   m.w.[m.d * row + col] <- v
 
+let fillRand lo hi m = 
+  { m with w = Array.init (Array.length m.w) (fun _ -> Utils.randf lo hi) }
+
+let randMat n d mu std =
+  mat n d
+  |> fillRand -std std
